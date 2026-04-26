@@ -10,12 +10,10 @@ import io.github.romero_rgb.utils.Settings
 
 class GameScreen(): Screen {
 
-    private val scubadiver = Scubadiver(Settings.SCUBADIVER_STARTX, Settings.SCUBADIVER_STARTY, Settings.SCUBADIVER_WIDTH, Settings.SCUBADIVER_HEIGHT)
+    private val scubadiver = Scubadiver(Settings.SCUBADIVER_STARTX, Settings.SCUBADIVER_STARTY, Settings.SCUBADIVER_WIDTH.toFloat(), Settings.SCUBADIVER_HEIGHT.toFloat())
 
-    private val camera = OrthographicCamera()
-    private val viewport = FitViewport(Settings.GAME_WIDTH.toFloat(), Settings.GAME_HEIGHT.toFloat(), camera)
 
-    private val stage = Stage(viewport)
+    private val stage = Stage()
 
 
     override fun show() {
@@ -28,7 +26,7 @@ class GameScreen(): Screen {
     }
 
     override fun resize(width: Int, height: Int) {
-        viewport.update(width, height, true)
+
     }
 
     override fun pause() {

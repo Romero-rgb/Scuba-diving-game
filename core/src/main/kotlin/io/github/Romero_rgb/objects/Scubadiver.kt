@@ -11,7 +11,6 @@ enum class ScubaPosition {
 
 class Scubadiver(x: Float, y: Float, private val width: Float, private val height: Float): Actor() {
 
-    protected val position = Vector2(x,y)
     protected var direction: ScubaPosition
 
 
@@ -25,20 +24,20 @@ class Scubadiver(x: Float, y: Float, private val width: Float, private val heigh
         val velocity = Settings.SCUBADIVER_VELOCITY * delta
         val sinkVelocity = Settings.SCUBADIVER_SINK_VELOCITY * delta
 
-        if (direction != ScubaPosition.UP) {
-            if (position.y - sinkVelocity >= 0) position.y -= sinkVelocity
+        if (direction != ScubaPosition.UP || direction != ScubaPosition.DOWN) {
+            if (y - sinkVelocity >= 0) y -= sinkVelocity
         }
 
 
         when (direction) {
 
-            ScubaPosition.UP -> if (position.y + height + velocity <= Settings.GAME_HEIGHT) position.y += velocity
+            ScubaPosition.UP -> if (y + height + velocity <= Settings.GAME_HEIGHT) y += velocity
 
-            ScubaPosition.DOWN -> if (position.y - velocity >= 0) position.y -= velocity
+            ScubaPosition.DOWN -> if (y - velocity >= 0) y -= velocity
 
-            ScubaPosition.RIGHT -> if (position.x + width + velocity <= Settings.GAME_WIDTH) position.x += velocity
+            ScubaPosition.RIGHT -> if (x + width + velocity <= Settings.GAME_WIDTH) x += velocity
 
-            ScubaPosition.LEFT -> if (position.x - velocity >= 0) position.x -= velocity
+            ScubaPosition.LEFT -> if (x - velocity >= 0) x -= velocity
 
             ScubaPosition.IDLE -> {}
 
@@ -65,10 +64,6 @@ class Scubadiver(x: Float, y: Float, private val width: Float, private val heigh
     fun stop() {
         direction = ScubaPosition.IDLE
     }
-
-
-
-
 
 
 }
