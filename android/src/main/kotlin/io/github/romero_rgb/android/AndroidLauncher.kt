@@ -1,11 +1,11 @@
-package io.github.Romero_rgb.android
+package io.github.romero_rgb.android
 
 import android.os.Bundle
 import android.view.WindowManager
 
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
-import io.github.Romero_rgb.SubmarinistaGame
+import io.github.romero_rgb.SubmarinistaGame
 
 /** Launches the Android application. */
 class AndroidLauncher : AndroidApplication() {

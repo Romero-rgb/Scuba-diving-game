@@ -1,17 +1,19 @@
-package io.github.Romero_rgb
+package io.github.romero_rgb
 
 import com.badlogic.gdx.Game
+import io.github.romero_rgb.helpers.AssetManager
+import io.github.romero_rgb.screens.GameScreen
 
-/** [com.badlogic.gdx.ApplicationListener] implementation shared by all platforms. */
 class SubmarinistaGame : Game() {
+    private lateinit var assetManager: AssetManager
 
     override fun create() {
-        load()
-        setScreen(initScreen(this))
+        assetManager.load()
+        setScreen(GameScreen())
     }
 
     override fun dispose() {
         super.dispose()
-        AssetManager.dispose()
+        assetManager.dispose()
     }
 }
