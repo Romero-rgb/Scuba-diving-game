@@ -8,6 +8,7 @@ class SubmarinistaGame : Game() {
     private lateinit var assetManager: AssetManager
 
     override fun create() {
+        assetManager = AssetManager()
         assetManager.load()
         setScreen(GameScreen())
     }

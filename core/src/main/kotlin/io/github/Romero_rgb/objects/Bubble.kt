@@ -1,5 +1,6 @@
 package io.github.romero_rgb.objects
 
+import com.badlogic.gdx.utils.Pool
 import kotlin.math.sin
 
 class Bubble(
@@ -13,15 +14,23 @@ class Bubble(
     private val velocity: Float,
     private val deadPoint: Float
 
-) : WorldElement(x, y, width, height, dead) {
+) : WorldElement(x, y, width, height, dead), Pool.Poolable {
 
+
+    fun setup(newX: Float, newWidth: Float, newHeight: Float) {
+        this.x = newX
+        this.width = newWidth
+        this.height = newHeight
+        this.dead = false
+        this.time = 0f
+    }
     private var time = 0f
-    private var dead = false
+    var dead = false
 
     override fun act(delta: Float) {
         oscillation(delta)
         y += velocity * delta
-        if (x >= deadPoint) {
+        if (y >= deadPoint) {
             dead = true
             if (dead)
                 remove()
@@ -33,6 +42,12 @@ class Bubble(
         val movement = sin(time * frequency) * amplitude
 
         setPosition(x + movement, y )
+    }
+
+    override fun reset() {
+        time = 0f
+        dead = false
+
     }
 
 
